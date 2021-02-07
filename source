@@ -1,0 +1,207 @@
+-- Science Simulator Gui
+
+if not _G.uiopen then
+
+repeat wait() until game:IsLoaded()
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/guRsWGxe", true))()
+--loadstring(game:HttpGet(('https://pastebin.com/raw/mnkZCLCL'),true))()	--fly
+local ui = library:CreateWindow({text = "Science Simulator!"})
+local rebirths = library:CreateWindow({text = "Rebirths"})
+local upg = library:CreateWindow({text = "Auto-Upgrades"})
+local tps = library:CreateWindow({text = "Teleports"})
+local ui2 = library:CreateWindow({text = "Misc"})
+
+local q1=false local q2=false local q3=false local q4=false local q5=false local q6=false local q7=false local q8=false local q9=false local q10=false
+local q11=false local q12=false local q13=false local q14=false local q15=false local q16=false local q17=false local q18=false local q19=false local q20=false
+local q21=false local q22=false local q23=false local q24=false local q25=false local q26=false local q27=false local q28=false local q29=false local q30=false
+local q31=false local q32=false local q33=false local q34=false local q35=false local q36=false local q37=false local q38=false local q39=false local q40=false
+
+_G.uiopen = true
+
+function getRoot(char)
+	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+	return rootPart
+end
+
+local function LinearSearch(TargetTable, TargetValue)
+    for Key, Value in pairs(TargetTable) do
+        if Value == TargetValue then
+            return Key
+        end
+    end
+end
+
+local function FLY()
+
+_G.FLYING = true
+
+repeat wait() until game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart") ~= nil
+
+local T = getRoot(game.Players.LocalPlayer.Character)
+
+_G.BG = Instance.new('BodyGyro')
+_G.BV = Instance.new('BodyVelocity')
+_G.BG.P = 9e4
+_G.BG.Parent = T
+_G.BV.Parent = T
+_G.BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+_G.BG.cframe = T.CFrame
+_G.BV.velocity = Vector3.new(0, 0, 0)
+_G.BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+
+end
+
+local function NOFLY()
+
+_G.FLYING = false
+
+repeat wait() until game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart") ~= nil
+
+if _G.BV ~= nil and _G.BG ~= nil then
+
+_G.BG:Destroy()
+_G.BV:Destroy()
+
+end
+
+end
+
+--[[
+function checkBoss()
+if game:GetService("Workspace").spawnedBosses:FindFirstChild("Elemental Cyborg") ~= nil then
+return true
+else
+return false
+end
+end
+--]]
+
+--[[
+local table1 = {}
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Rebirths.Holder.Out.List()) do
+if v:IsA("ImageLabel") then
+local splitted = v:FindFirstChild("Amount").Text:split("(")
+table.insert(table1,splitted[1])
+end
+end
+--]]
+
+--[[
+ui:AddDropdown({unpack(table1)}, function(a)
+_G.rebamount = a
+print(_G.rebamount)
+end)
+--]]
+
+ui:AddToggle("Auto-Click", function()
+if q1 == false then q1 = true
+
+_G.autoclick = true while _G.autoclick == true do wait()
+
+game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.NetManagedInstances["acbe8f16-4b45-493e-8626-e401eba6e95b"]:FireServer()
+
+end
+
+else q1 = false
+_G.autoclick = false
+end
+end)
+
+ui:AddToggle("Auto-Rank", function()
+if q2 == false then q2 = true
+
+_G.autorank = true while _G.autorank == true do wait(.5)
+
+game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.NetManagedInstances["16b1dd9f-fb8c-48a7-9f31-7995c0c46b9a"]:FireServer()
+
+end
+
+else q2 = false
+_G.autorank = false
+end
+end)
+
+rebirths:AddToggle("Auto-Rebirth", function()
+if q3 == false then q3 = true
+
+_G.autorebirth = true while _G.autorebirth == true do wait()
+
+game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.NetManagedInstances["26bf618d-a375-4dd2-987c-f0d44911aa2b"]:FireServer(_G.rebamount)
+
+end
+
+else q3 = false
+_G.autorebirth = false
+end
+end)
+
+local table1 = {"1","5","25","50","100","250","500","3k","5k","10k","20k","40k","80k","160k","200k","400k","2M","4M","15M","75M","375M"}
+
+rebirths:AddDropdown({unpack(table1)}, function(a)
+
+_G.rebamount = LinearSearch(table1,a)-1
+
+--print(_G.rebamount)
+
+end)
+
+local table2 = {"Pet Experience","Equip Best Pets","Pets Equipped","Inventory Upgrades","Shiny Chance","Faster Egg Hatching","Gem Multiplier","Auto Hatch","Rebirth Unlocks"}
+
+--game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.NetManagedInstances["6b74583c-a3ee-4d7e-bb29-2eb126d71113"]:FireServer("Pet Experience")
+
+--local table1 = {}
+
+--[[
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.main.rebirths.options:GetChildren()) do
+    local reb = tonumber(v.Name)
+    if typeof(reb) == "number" then
+    for a,o in pairs(table1) do
+        if reb == tonumber(o) then
+            break
+        end
+    end
+    table.insert(table1,reb)
+end
+end
+--]]
+
+
+_G.uicode = tostring(math.random(100000,900000000))
+ui2:AddLabel(_G.uicode)
+for _,l in pairs(game:GetService("CoreGui"):GetDescendants()) do 
+if l:IsA("TextLabel") and l.Text == _G.uicode then 
+_G.uiuiui = l.Parent.Parent.Parent
+_G.uiuiui.DisplayOrder = 9999
+l:Destroy()
+end;end
+
+--[[
+ui2:AddToggle("Hide Purchase Prompts", function()
+if q22 == false then q22 = true
+game:GetService("CoreGui").PurchasePromptApp.PurchasePromptUI.Visible = false
+else q22 = false
+game:GetService("CoreGui").PurchasePromptApp.PurchasePromptUI.Visible = true
+end
+end)
+--]]
+
+ui2:AddButton("Destroy Gui", function()
+_G.uiopen = false
+_G.uiuiui:Destroy()
+end)
+
+if not _G.ranonce then
+loadstring(game:HttpGet("https://pastebin.com/raw/z5n4sD2E",true))()
+_G.ranonce = true
+else
+_G.ranonce = true
+end
+
+game:GetService("Players").LocalPlayer.Idled:connect( --anti afk
+   function()
+       game:GetService("VirtualUser"):CaptureController()
+       game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+   end
+)
+
+end --has to be here
