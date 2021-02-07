@@ -6,8 +6,8 @@ repeat wait() until game:IsLoaded()
 local library = loadstring(game:HttpGet("https://pastebin.com/raw/guRsWGxe", true))()
 --loadstring(game:HttpGet(('https://pastebin.com/raw/mnkZCLCL'),true))()	--fly
 local ui = library:CreateWindow({text = "Science Simulator!"})
-local rebirths = library:CreateWindow({text = "Rebirths"})
-local upg = library:CreateWindow({text = "Auto-Upgrades"})
+--local rebirths = library:CreateWindow({text = "Rebirths"})
+--local upg = library:CreateWindow({text = "Auto-Upgrades"})
 local tps = library:CreateWindow({text = "Teleports"})
 local ui2 = library:CreateWindow({text = "Misc"})
 
@@ -121,7 +121,7 @@ _G.autorank = false
 end
 end)
 
-rebirths:AddToggle("Auto-Rebirth", function()
+ui:AddToggle("Auto-Rebirth", function()
 if q3 == false then q3 = true
 
 _G.autorebirth = true while _G.autorebirth == true do wait()
@@ -137,7 +137,7 @@ end)
 
 local table1 = {"1","5","25","50","100","250","500","3k","5k","10k","20k","40k","80k","160k","200k","400k","2M","4M","15M","75M","375M"}
 
-rebirths:AddDropdown({unpack(table1)}, function(a)
+ui:AddDropdown({unpack(table1)}, function(a)
 
 _G.rebamount = LinearSearch(table1,a)-1
 
