@@ -98,7 +98,7 @@ if q1 == false then q1 = true
 
 _G.autoclick = true while _G.autoclick == true do wait()
 
-game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.NetManagedInstances["acbe8f16-4b45-493e-8626-e401eba6e95b"]:FireServer()
+game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged["f179b30d-9c01-4c27-93e4-56039cc5047c"]:FireServer()
 
 end
 
@@ -112,7 +112,7 @@ if q2 == false then q2 = true
 
 _G.autorank = true while _G.autorank == true do wait(.5)
 
-game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.NetManagedInstances["16b1dd9f-fb8c-48a7-9f31-7995c0c46b9a"]:FireServer()
+game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged["b6cc5e70-3f71-41d3-913c-2900f9956b86"]:FireServer()
 
 end
 
@@ -126,7 +126,7 @@ if q3 == false then q3 = true
 
 _G.autorebirth = true while _G.autorebirth == true do wait()
 
-game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.NetManagedInstances["26bf618d-a375-4dd2-987c-f0d44911aa2b"]:FireServer(_G.rebamount)
+game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged["2b513527-5181-4f5f-8655-2da38a5cf227"]:FireServer(_G.rebamount)
 
 end
 
