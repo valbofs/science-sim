@@ -151,6 +151,49 @@ local table2 = {"Pet Experience","Equip Best Pets","Pets Equipped","Inventory Up
 
 --local table1 = {}
 
+ui:AddBox("Webhook", function(user)
+_G.webhook = user.Text
+end)
+
+ui:AddToggle("Post Legendary Hatches", function()
+if q4 == false then q4 = true
+
+_G.scanlegendaries = true while _G.scanlegendaries == true do wait()
+    
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.hatch.Frame:GetChildren()) do
+if v:IsA("Frame") then
+if v:FindFirstChild("PetRarity").Text == "Legendary" then
+v:FindFirstChild("PetRarity").Text = "Legendary "
+print(v:FindFirstChild("PetName").Text)
+
+if _G.webhook ~= nil then
+
+local date = os.date("!*t")
+local response = syn.request(
+    {
+        Url = _G.webhook,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = game.HttpService:JSONEncode({
+		content = game.Players.LocalPlayer.Name .. " hatched " .. v:FindFirstChild("PetName").Text .. " at " .. date.hour+2 .. ":" .. date.min .. " on " ..date.day.."/"..date.month.."/"..date.year..". " .. "<@&813504005942411334>",
+		--username = game.Players.LocalPlayer.Name
+		})
+    }
+)
+
+end
+end
+end
+end
+end
+
+else q4 = false
+_G.scanlegendaries = false
+end
+end)
+
 --[[
 for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.main.rebirths.options:GetChildren()) do
     local reb = tonumber(v.Name)
