@@ -151,7 +151,7 @@ local table2 = {"Pet Experience","Equip Best Pets","Pets Equipped","Inventory Up
 
 --local table1 = {}
 
-ui:AddBox("Webhook", function(user)
+ui:AddBox("Legendary Webhook", function(user)
 _G.webhook = user.Text
 end)
 
@@ -191,6 +191,49 @@ end
 
 else q4 = false
 _G.scanlegendaries = false
+end
+end)
+
+ui:AddBox("Secret Webhook", function(user1)
+_G.webhook1 = user1.Text
+end)
+
+ui:AddToggle("Post Secret Hatches", function()
+if q5 == false then q5 = true
+
+_G.scansecrets = true while _G.scansecrets == true do wait()
+    
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.hatch.Frame:GetChildren()) do
+if v:IsA("Frame") then
+if v:FindFirstChild("PetRarity").Text == "Secret" then
+v:FindFirstChild("PetRarity").Text = "Secret "
+print(v:FindFirstChild("PetName").Text)
+
+if _G.webhook ~= nil then
+
+local date = os.date("!*t")
+local response = syn.request(
+    {
+        Url = _G.webhook,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = game.HttpService:JSONEncode({
+		content = game.Players.LocalPlayer.Name .. " hatched a SECRET pet: " .. v:FindFirstChild("PetName").Text .. " at " .. date.hour+2 .. ":" .. date.min .. " on " ..date.day.."/"..date.month.."/"..date.year.."! " .. "<@&815556354923298818>",
+		--username = game.Players.LocalPlayer.Name
+		})
+    }
+)
+
+end
+end
+end
+end
+end
+
+else q5 = false
+_G.scansecrets = false
 end
 end)
 
