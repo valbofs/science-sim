@@ -158,7 +158,7 @@ end)
 ui:AddToggle("Post Legendary Hatches", function()
 if q4 == false then q4 = true
 
-_G.scanlegendaries = true while _G.scanlegendaries == true do wait()
+_G.scanlegendaries = true while _G.scanlegendaries == true do wait(.2)
     
 for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.hatch.Frame:GetChildren()) do
 if v:IsA("Frame") then
@@ -201,7 +201,7 @@ end)
 ui:AddToggle("Post Secret Hatches", function()
 if q5 == false then q5 = true
 
-_G.scansecrets = true while _G.scansecrets == true do wait()
+_G.scansecrets = true while _G.scansecrets == true do wait(.2)
     
 for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.hatch.Frame:GetChildren()) do
 if v:IsA("Frame") then
